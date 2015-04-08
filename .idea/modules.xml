@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/apis.iml" filepath="$PROJECT_DIR$/apis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tioga-apis-big-huge-thesaurus/tioga-apis-big-huge-thesaurus.iml" filepath="$PROJECT_DIR$/tioga-apis-big-huge-thesaurus/tioga-apis-big-huge-thesaurus.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tioga-apis-bitly/tioga-apis-bitly.iml" filepath="$PROJECT_DIR$/tioga-apis-bitly/tioga-apis-bitly.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tioga-apis-google/tioga-apis-google.iml" filepath="$PROJECT_DIR$/tioga-apis-google/tioga-apis-google.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tioga-apis-opensrs/tioga-apis-opensrs.iml" filepath="$PROJECT_DIR$/tioga-apis-opensrs/tioga-apis-opensrs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tioga-apis-useragent/tioga-apis-useragent.iml" filepath="$PROJECT_DIR$/tioga-apis-useragent/tioga-apis-useragent.iml" />
+    </modules>
+  </component>
+</project>

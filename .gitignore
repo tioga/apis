@@ -1,0 +1,16 @@
+*.iws
+
+#For Linux machines
+**/.gradle/
+**/target/
+**/build/
+**/out/
+
+#And for windows
+**\.gradle/
+**\target/
+**\build/
+**\out/
+
+tioga-apis-big-huge-thesaurus/data/cache/
+.idea/workspace.xml
