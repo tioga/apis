@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 project(':tioga-apis-big-huge-thesaurus') {
-  version = "2.2.7"
+  version = "2.2.8"
 
   dependencies {
-    compile("org.tiogasolutions.lib:tioga-lib-jaxrs-jackson:5.0.6")
+    compile("org.tiogasolutions.lib:tioga-lib-jaxrs-jackson:5.1.0")
 
     // Fixing transitive dependency problem with jackson-databind
     compile("com.fasterxml.jackson.core:jackson-annotations:2.5.1") {force = true}

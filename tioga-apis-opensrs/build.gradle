@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 project(':tioga-apis-opensrs') {
-  version = "2.2.6"
+  version = "2.2.7"
 
   dependencies {
     compile("org.tiogasolutions.dev:tioga-dev-common:4.1.4")
