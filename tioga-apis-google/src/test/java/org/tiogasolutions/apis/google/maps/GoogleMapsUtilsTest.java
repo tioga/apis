@@ -16,8 +16,13 @@
 
 package org.tiogasolutions.apis.google.maps;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.net.UnknownHostException;
 import java.util.Arrays;
+import java.util.List;
+
+import org.testng.SkipException;
 import org.tiogasolutions.dev.domain.locality.*;
 import org.testng.annotations.*;
 
@@ -35,10 +40,14 @@ public class GoogleMapsUtilsTest {
 
   @BeforeClass
   public void beforeClass() throws Exception {
-    homeLatLng = GoogleMapsUtils.getLatLng("40565 Goldside Dr", "Oakhurst", State.CA, "93644");
-    workLatLng = GoogleMapsUtils.getLatLng("40033 Sierra Way", "Oakhurst", State.CA, "93644");
-    jonLatLng = GoogleMapsUtils.getLatLng("2203 E Berkeley", "Fresno", "CA", "93703");
-    sunnyLatLng = GoogleMapsUtils.getLatLng("5235 E Kings Canyon Suite #105", "Fresno", "CA", "93727");
+    try {
+      homeLatLng = GoogleMapsUtils.getLatLng("40565 Goldside Dr", "Oakhurst", State.CA, "93644");
+      workLatLng = GoogleMapsUtils.getLatLng("40033 Sierra Way", "Oakhurst", State.CA, "93644");
+      jonLatLng = GoogleMapsUtils.getLatLng("2203 E Berkeley", "Fresno", "CA", "93703");
+      sunnyLatLng = GoogleMapsUtils.getLatLng("5235 E Kings Canyon Suite #105", "Fresno", "CA", "93727");
+    } catch (UnknownHostException e) {
+      throw new SkipException("Offline", e);
+    }
   }
 
   public void testGetDirections_JonToSunnySide() throws Exception {
@@ -70,9 +79,11 @@ public class GoogleMapsUtilsTest {
 
     // Google will change routes which messes with tests.
     long seconds = leg.getDuration().getSeconds();
-    assertTrue(seconds > 500 && seconds < 800, "Found "+seconds);
+    assertTrue(seconds > 500 && seconds < 800, "Found " + seconds);
 
-    assertEquals(leg.getDuration().getLabel(), "12 mins");
+    List<String> valid = Arrays.asList("11 mins", "12 mins", "13 mins");
+    label = leg.getDuration().getLabel();
+    assertTrue(valid.contains(label), "Was "+label+" but exepected one of " + valid);
   }
 
   public void testGetMilesByGoogle_JonToSunnySide() throws Exception {
