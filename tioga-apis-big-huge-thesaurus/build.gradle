@@ -17,7 +17,7 @@ project(':tioga-apis-big-huge-thesaurus') {
   version = "2.2.9"
 
   dependencies {
-    compile("org.tiogasolutions.lib:tioga-lib-jaxrs-jackson:5.+")
+    compile("org.tiogasolutions.lib:tioga-lib-jaxrs-jackson:+")
 
     testCompile ("org.testng:testng:6.8.21")
     testCompile ("org.glassfish.jersey.core:jersey-client:2.17")
