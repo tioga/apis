@@ -54,7 +54,7 @@ public class BigHugeThesaurusApis {
 
         } else {
           String msg = String.format("%s: Unable to process request for \"%s\" at %s", status, word, uri);
-          throw new ApiException(HttpStatusCode.findByCode(status), msg);
+          throw ApiException.fromCode(status, msg);
         }
       } else if (StringUtils.isBlank(json)) {
         // The file exists but it is empty because we

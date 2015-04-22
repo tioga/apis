@@ -106,7 +106,7 @@ public class BitlyApis {
 
       } else {
         String msg = String.format("%s: Unable to process request to shortenEncoded %s (%s)", status, prettyUrl, text);
-        throw new ApiException(HttpStatusCode.findByCode(status), msg);
+        throw ApiException.fromCode(status, msg);
       }
 
     } catch (ApiException ex) {
