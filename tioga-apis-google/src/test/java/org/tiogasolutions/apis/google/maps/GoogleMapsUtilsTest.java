@@ -72,7 +72,7 @@ public class GoogleMapsUtilsTest {
     assertTrue(meters < 13000, "Found " + meters);
 
     String label = leg.getDistance().getLabel();
-    boolean contains = Arrays.asList("7.0 mi", "8.0 mi").contains(label);
+    boolean contains = Arrays.asList("6.8 mi", "6.9 mi", "7.0 mi", "8.0 mi").contains(label);
     assertTrue(contains, "Found " + label);
 
     assertNotNull(leg.getDuration());
