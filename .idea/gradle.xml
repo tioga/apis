@@ -16,6 +16,16 @@
             <option value="$PROJECT_DIR$/tioga-apis-useragent" />
           </set>
         </option>
+        <option name="myModules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/tioga-apis-big-huge-thesaurus" />
+            <option value="$PROJECT_DIR$/tioga-apis-bitly" />
+            <option value="$PROJECT_DIR$/tioga-apis-google" />
+            <option value="$PROJECT_DIR$/tioga-apis-opensrs" />
+            <option value="$PROJECT_DIR$/tioga-apis-useragent" />
+          </set>
+        </option>
       </GradleProjectSettings>
     </option>
   </component>
