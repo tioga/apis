@@ -147,7 +147,7 @@ public class GoogleMapsUtilsTest {
     assertEquals(jonLatLng.getLongitude(), "-119.7849170");
 
     assertNotNull(sunnyLatLng);
-    assertEquals(sunnyLatLng.getLatitude(), "36.7364290");
-    assertEquals(sunnyLatLng.getLongitude(), "-119.7172487");
+    assertEquals(sunnyLatLng.getLatitude(), "36.7364561");
+    assertEquals(sunnyLatLng.getLongitude(), "-119.7171841");
   }
 }
