@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 project(':tioga-apis-bitly') {
-  version = "1.2.0"
+  version = "1.2.1"
 
   dependencies {
-    compile("org.tiogasolutions.lib:tioga-lib-jaxrs-jackson:+")
+    compile("org.tiogasolutions.lib:tioga-lib-jaxrs:+")
 
     testCompile ("org.testng:testng:6.8.21")
     testCompile ("org.glassfish.jersey.core:jersey-client:2.17")
