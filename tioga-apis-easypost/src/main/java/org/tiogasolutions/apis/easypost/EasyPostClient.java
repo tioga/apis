@@ -2,9 +2,7 @@ package org.tiogasolutions.apis.easypost;
 
 import org.tiogasolutions.apis.easypost.carrier.PredefinedPackage;
 import org.tiogasolutions.apis.easypost.pub.*;
-import org.tiogasolutions.apis.easypost.requests.CreateAddressRequest;
-import org.tiogasolutions.apis.easypost.requests.CreateParcelRequest;
-import org.tiogasolutions.apis.easypost.requests.CreateShipmentRequest;
+import org.tiogasolutions.apis.easypost.requests.*;
 import org.tiogasolutions.dev.common.json.JsonTranslator;
 import org.tiogasolutions.dev.jackson.TiogaJacksonTranslator;
 import org.tiogasolutions.lib.jaxrs.client.SimpleRestClient;
@@ -94,11 +92,10 @@ public class EasyPostClient {
     return client.post(Shipment.class, "/shipments", form);
   }
 
-  public PostageLabel buyPostage(Rate rate) {
-    Form form = new Form();
-    form.param("rate[id]", rate.getId());
+  public BuyRateResponse buyPostage(BuyRateRequest buyRateRequest) {
+    Form form = buyRateRequest.toForm();
 
-    String url = String.format("/shipments/%s/buy", rate.getShipmentId());
-    return client.post(PostageLabel.class, url, form);
+    String url = String.format("/shipments/%s/buy", buyRateRequest.getShipmentId());
+    return client.post(BuyRateResponse.class, url, form);
   }
 }

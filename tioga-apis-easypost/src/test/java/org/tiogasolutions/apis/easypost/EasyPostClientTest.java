@@ -5,6 +5,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tiogasolutions.apis.easypost.carrier.UspsPredefinedPackages;
 import org.tiogasolutions.apis.easypost.pub.*;
+import org.tiogasolutions.apis.easypost.requests.BuyRateRequest;
+import org.tiogasolutions.apis.easypost.requests.BuyRateResponse;
 import org.tiogasolutions.apis.easypost.requests.CreateAddressRequest;
 import org.tiogasolutions.apis.easypost.requests.CreateParcelRequest;
 
@@ -137,7 +139,7 @@ public class EasyPostClientTest {
   }
 
   @Test
-  public void testByShipment() {
+  public void testBuyShipment() {
 
     CreateParcelRequest parcel = new CreateParcelRequest(10, 2, 3, 4);
     CreateAddressRequest toAddress = RequestFactory.createBusinessAddress();
@@ -148,8 +150,12 @@ public class EasyPostClientTest {
     Assert.assertEquals(shipment.getRates().size(), 8);
 
     Rate rate = shipment.getRates().get(0);
+    BuyRateRequest buyRateRequest = new BuyRateRequest(rate);
 
-    PostageLabel postageLabel = client.buyPostage(rate);
+    BuyRateResponse response = client.buyPostage(buyRateRequest);
+    Assert.assertNotNull(response);
+
+    PostageLabel postageLabel = response.getPostageLabel();
     Assert.assertNotNull(postageLabel);
   }
 }
