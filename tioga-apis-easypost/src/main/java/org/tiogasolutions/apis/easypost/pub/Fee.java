@@ -8,12 +8,12 @@ import java.math.BigDecimal;
 @JsonIgnoreProperties("object")
 public class Fee {
 
-  private final String type;
+  private final FeeType type;
   private final BigDecimal amount;
   private final boolean charged;
   private final boolean refunded;
 
-  public Fee(@JsonProperty("type") String type,
+  public Fee(@JsonProperty("type") FeeType type,
              @JsonProperty("amount") BigDecimal amount,
              @JsonProperty("charged") boolean charged,
              @JsonProperty("refunded") boolean refunded) {
@@ -24,7 +24,7 @@ public class Fee {
     this.refunded = refunded;
   }
 
-  public String getType() {
+  public FeeType getType() {
     return type;
   }
 
