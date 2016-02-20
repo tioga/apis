@@ -14,4 +14,4 @@
  * limitations under the License.
  */
 
-include "tioga-apis-google", "tioga-apis-useragent", "tioga-apis-big-huge-thesaurus", "tioga-apis-opensrs", "tioga-apis-bitly", "tioga-apis-easypost"
+include "tioga-apis-google", "tioga-apis-useragent", "tioga-apis-big-huge-thesaurus", "tioga-apis-opensrs", "tioga-apis-bitly", "tioga-apis-easypost", "tioga-apis-cloudfoundry"

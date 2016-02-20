@@ -3,6 +3,7 @@ package org.tiogasolutions.apis.cloudfoundry;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import org.tiogasolutions.apis.cloudfoundry.pub.*;
 
 import java.util.List;
 import java.util.SortedSet;

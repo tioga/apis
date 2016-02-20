@@ -12,6 +12,8 @@ public class Request {
   private final String environmentJson;
   private final int healthCheckTimeout;
   private final String route;
+  private final String organizationGuid;
+  private final String developerGuids;
 
 
   public Request(@JsonProperty("state") String state,
@@ -21,7 +23,9 @@ public class Request {
                  @JsonProperty("buildpack") String buildpack,
                  @JsonProperty("environment_json") String environmentJson,
                  @JsonProperty("health_check_timeout") int healthCheckTimeout,
-                 @JsonProperty("route") String route) {
+                 @JsonProperty("route") String route,
+                 @JsonProperty("organization_guid") String organizationGuid,
+                 @JsonProperty("developer_guids") String developerGuids) {
 
     this.state = state;
     this.name = name;
@@ -31,6 +35,12 @@ public class Request {
     this.environmentJson = environmentJson;
     this.healthCheckTimeout = healthCheckTimeout;
     this.route = route;
+    this.organizationGuid = organizationGuid;
+    this.developerGuids = developerGuids;
+  }
+
+  public String getOrganizationGuid() {
+    return organizationGuid;
   }
 
   public String getRoute() {
@@ -63,5 +73,9 @@ public class Request {
 
   public int getHealthCheckTimeout() {
     return healthCheckTimeout;
+  }
+
+  public String getDeveloperGuids() {
+    return developerGuids;
   }
 }

@@ -1,16 +1,15 @@
 package org.tiogasolutions.apis.cloudfoundry;
 
+import org.tiogasolutions.apis.cloudfoundry.pub.Event;
+import org.tiogasolutions.apis.cloudfoundry.pub.GetAppsResponse;
+import org.tiogasolutions.apis.cloudfoundry.pub.GetEventsResponse;
+import org.tiogasolutions.apis.cloudfoundry.pub.LoginResponse;
 import org.tiogasolutions.dev.jackson.TiogaJacksonTranslator;
 import org.tiogasolutions.lib.jaxrs.client.BasicAuthorization;
 import org.tiogasolutions.lib.jaxrs.client.BearerAuthorization;
 import org.tiogasolutions.lib.jaxrs.client.SimpleRestClient;
-import org.tiogasolutions.notify.extras.pwsmon.pws.pub.Event;
-import org.tiogasolutions.notify.extras.pwsmon.pws.pub.GetAppsResponse;
-import org.tiogasolutions.notify.extras.pwsmon.pws.pub.GetEventsResponse;
-import org.tiogasolutions.notify.extras.pwsmon.pws.pub.LoginResponse;
 
 import javax.ws.rs.core.Form;
-import javax.ws.rs.core.Response;
 import java.util.SortedSet;
 
 public class PwsClient {
