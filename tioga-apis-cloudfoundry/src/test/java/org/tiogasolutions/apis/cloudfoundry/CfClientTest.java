@@ -1,6 +1,7 @@
 package org.tiogasolutions.apis.cloudfoundry;
 
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tiogasolutions.apis.cloudfoundry.pub.*;
@@ -19,8 +20,8 @@ public class CfClientTest {
     cfClient = new CfClient();
     cfClient.setIgnoringCertificates(true);
 
-    String username = EnvUtils.requireProperty("tioga.test.cloudfoundry.username");
-    String password = EnvUtils.requireProperty("tioga.test.cloudfoundry.password");
+    String username = EnvUtils.requireProperty("tioga.test.cloudfoundry.username", SkipException.class);
+    String password = EnvUtils.requireProperty("tioga.test.cloudfoundry.password", SkipException.class);
 
     LoginResponse response = cfClient.login(username, password);
     Assert.assertNotNull(response);
