@@ -1,29 +1,24 @@
 package org.tiogasolutions.apis.bitly;
 
+import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
 import org.tiogasolutions.dev.common.EnvUtils;
 import org.tiogasolutions.dev.common.exceptions.ApiException;
-import org.tiogasolutions.dev.common.json.JsonTranslator;
-import org.tiogasolutions.dev.jackson.TiogaJacksonTranslator;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;
 
 @Test
 public class BitlyApisTest {
 
-  private String accessToken;
-  private JsonTranslator translator;
   private BitlyApis bitlyApis;
 
   @BeforeClass
   public void beforeClass() {
     try {
-      accessToken = EnvUtils.requireProperty("TIOGA_TEST_OATH_API");
-      translator = new TiogaJacksonTranslator();
-      bitlyApis = new BitlyApis(translator, accessToken);
+      String accessToken = EnvUtils.requireProperty("tioga.test.bitly.access.token", SkipException.class);
+      bitlyApis = new BitlyApis(accessToken);
 
     } catch (Exception ex) {
       throw new SkipException("Authentication required for test.", ex);

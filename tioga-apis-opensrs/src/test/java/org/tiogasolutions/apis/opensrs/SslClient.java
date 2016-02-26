@@ -1,17 +1,27 @@
 package org.tiogasolutions.apis.opensrs;
 
+import org.apache.commons.httpclient.HttpClient;
+import org.apache.commons.httpclient.methods.PostMethod;
+import org.apache.commons.httpclient.methods.StringRequestEntity;
+import org.apache.commons.httpclient.params.HttpClientParams;
+import org.apache.commons.httpclient.params.HttpConnectionParams;
+import org.apache.commons.httpclient.protocol.Protocol;
+import org.apache.commons.httpclient.protocol.ProtocolSocketFactory;
+import org.apache.commons.httpclient.protocol.SecureProtocolSocketFactory;
+import org.tiogasolutions.dev.common.EnvUtils;
+
+import javax.net.SocketFactory;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 import java.io.IOException;
 import java.math.BigInteger;
-import java.net.*;
-import java.security.*;
-import javax.net.SocketFactory;
-import javax.net.ssl.*;
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.methods.*;
-import org.apache.commons.httpclient.params.*;
-import org.apache.commons.httpclient.protocol.*;
-import org.tiogasolutions.dev.common.EnvUtils;
-import org.tiogasolutions.dev.common.exceptions.ExceptionUtils;
+import java.net.InetAddress;
+import java.net.Socket;
+import java.net.UnknownHostException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class SslClient {
 
@@ -118,11 +128,8 @@ public class SslClient {
 
   public static void main(String[] args) {
 
-    String privateKey = EnvUtils.findProperty(OpenSrsApi.OPEN_SRS_API_KEY);
-    ExceptionUtils.assertNotNull(privateKey, OpenSrsApi.OPEN_SRS_API_KEY);
-
-    String userName = EnvUtils.findProperty(OpenSrsApi.OPEN_SRS_API_LOGIN);
-    ExceptionUtils.assertNotNull(userName, OpenSrsApi.OPEN_SRS_API_LOGIN);
+    String privateKey = EnvUtils.requireProperty(OpenSrsApi.OPEN_SRS_API_KEY);
+    String userName = EnvUtils.requireProperty(OpenSrsApi.OPEN_SRS_API_LOGIN);
 
     int port = OpenSrsPort.secure.getPort();
     String host = OpenSrsEnv.live.getHost();

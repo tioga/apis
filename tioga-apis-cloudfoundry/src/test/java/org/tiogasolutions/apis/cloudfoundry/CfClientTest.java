@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tiogasolutions.apis.cloudfoundry.pub.*;
+import org.tiogasolutions.dev.common.EnvUtils;
 
 import java.util.List;
 import java.util.SortedSet;
@@ -18,7 +19,10 @@ public class CfClientTest {
     cfClient = new CfClient();
     cfClient.setIgnoringCertificates(true);
 
-    LoginResponse response = cfClient.login("me@jacobparr.com", "go2Pivotal");
+    String username = EnvUtils.requireProperty("tioga.test.cloudfoundry.username");
+    String password = EnvUtils.requireProperty("tioga.test.cloudfoundry.password");
+
+    LoginResponse response = cfClient.login(username, password);
     Assert.assertNotNull(response);
   }
 

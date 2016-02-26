@@ -1,17 +1,23 @@
 package org.tiogasolutions.apis.bighugethesaurus;
 
-import java.io.File;
-import java.util.*;
-import org.tiogasolutions.dev.common.*;
+import org.tiogasolutions.dev.common.EnvUtils;
+import org.tiogasolutions.dev.common.IoUtils;
+import org.tiogasolutions.dev.common.StringUtils;
 import org.tiogasolutions.dev.common.json.JsonTranslator;
 import org.tiogasolutions.dev.jackson.TiogaJacksonTranslator;
+
+import java.io.File;
+import java.util.Collections;
+import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class BigHugeThesaurusApisJobs {
 
   private File cacheDir;
   private File queueFile;
   private FileSystemCache cache;
-  private final String apiKey = "2607109c69468b33374223e59652b98d";
+  private final String apiKey = EnvUtils.requireProperty("tioga.test.bht.api.key");
   private BigHugeThesaurusApis thesaurusApis;
 
   public static void main(String...args) {

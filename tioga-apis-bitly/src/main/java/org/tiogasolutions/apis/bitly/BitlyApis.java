@@ -3,7 +3,7 @@ package org.tiogasolutions.apis.bitly;
 import org.tiogasolutions.dev.common.StringUtils;
 import org.tiogasolutions.dev.common.exceptions.ApiException;
 import org.tiogasolutions.dev.common.json.JsonTranslator;
-import org.tiogasolutions.dev.common.net.HttpStatusCode;
+import org.tiogasolutions.dev.jackson.TiogaJacksonTranslator;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -16,18 +16,17 @@ public class BitlyApis {
 
   private final String accessToken;
   private final String version;
-  private final JsonTranslator translator;
   private final String urlTemplate;
-  Client client = ClientBuilder.newBuilder().build();
+  private final JsonTranslator translator = new TiogaJacksonTranslator();
+  private final Client client = ClientBuilder.newBuilder().build();
 
-  public BitlyApis(JsonTranslator translator, String accessToken) {
-    this("api-ssl.bitly.com", translator, "3", accessToken);
+  public BitlyApis(String accessToken) {
+    this("api-ssl.bitly.com", "3", accessToken);
   }
 
-  public BitlyApis(String apiEndPoint, JsonTranslator translator, String version, String accessToken) {
+  public BitlyApis(String apiEndPoint, String version, String accessToken) {
     this.accessToken = accessToken;
     this.version = version;
-    this.translator = translator;
     this.urlTemplate = "https://"+apiEndPoint+"/v%s/%s";
   }
 

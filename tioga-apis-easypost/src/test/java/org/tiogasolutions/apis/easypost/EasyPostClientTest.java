@@ -1,6 +1,7 @@
 package org.tiogasolutions.apis.easypost;
 
 import org.testng.Assert;
+import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tiogasolutions.apis.easypost.carrier.UspsPredefinedPackages;
@@ -9,6 +10,7 @@ import org.tiogasolutions.apis.easypost.requests.BuyRateRequest;
 import org.tiogasolutions.apis.easypost.requests.BuyRateResponse;
 import org.tiogasolutions.apis.easypost.requests.CreateAddressRequest;
 import org.tiogasolutions.apis.easypost.requests.CreateParcelRequest;
+import org.tiogasolutions.dev.common.EnvUtils;
 
 import java.util.List;
 
@@ -18,7 +20,8 @@ public class EasyPostClientTest {
 
   @BeforeClass
   public void beforeClass() {
-    client = new EasyPostClient("aNdeaszuMMcNuRqHlaehVQ");
+    String apiKey = EnvUtils.requireProperty("tioga.test.easypost.api.key", SkipException.class);
+    client = new EasyPostClient(apiKey);
   }
 
   @Test
