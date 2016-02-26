@@ -152,7 +152,7 @@ public class EasyPostClientTest {
     Shipment shipment = client.createShipment(parcel, toAddress, frAddress);
     List<Rate> rates = shipment.getRates();
     Assert.assertNotNull(rates);
-    Assert.assertEquals(rates.size(), 4, "Found: " + rates);
+    Assert.assertEquals(rates.size(), 8, "Found: " + rates);
 
     Rate rate = shipment.getRates().get(0);
     BuyRateRequest buyRateRequest = new BuyRateRequest(rate);

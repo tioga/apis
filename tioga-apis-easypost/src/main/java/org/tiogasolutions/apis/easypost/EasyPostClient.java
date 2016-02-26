@@ -5,6 +5,7 @@ import org.tiogasolutions.apis.easypost.pub.*;
 import org.tiogasolutions.apis.easypost.requests.*;
 import org.tiogasolutions.dev.common.json.JsonTranslator;
 import org.tiogasolutions.dev.jackson.TiogaJacksonTranslator;
+import org.tiogasolutions.lib.jaxrs.client.BasicAuthorization;
 import org.tiogasolutions.lib.jaxrs.client.SimpleRestClient;
 
 import javax.ws.rs.core.Form;
@@ -15,7 +16,7 @@ public class EasyPostClient {
 
   public EasyPostClient(String apiKey) {
     JsonTranslator translator = new TiogaJacksonTranslator();
-    this.client = new SimpleRestClient(translator, "https://api.easypost.com/v2", apiKey, "");
+    this.client = new SimpleRestClient(translator, "https://api.easypost.com/v2", new BasicAuthorization(apiKey, ""));
   }
 
   

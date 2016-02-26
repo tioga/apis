@@ -41,6 +41,7 @@ public class App {
   private final String eventsUrl;
   private final String serviceBindingsUrl;
   private final String routesUrl;
+  private final String routeMappingsUrl;
 
   public App(@JsonProperty("name") String name,
              @JsonProperty("production") boolean production,
@@ -74,7 +75,8 @@ public class App {
              @JsonProperty("stack_url") String stackUrl,
              @JsonProperty("events_url") String eventsUrl,
              @JsonProperty("service_bindings_url") String serviceBindingsUrl,
-             @JsonProperty("routes_url") String routesUrl) {
+             @JsonProperty("routes_url") String routesUrl,
+             @JsonProperty("route_mappings_url") String routeMappingsUrl) {
 
     this.name = name;
     this.production = production;
@@ -109,6 +111,11 @@ public class App {
     this.eventsUrl = eventsUrl;
     this.serviceBindingsUrl = serviceBindingsUrl;
     this.routesUrl = routesUrl;
+    this.routeMappingsUrl = routeMappingsUrl;
+  }
+
+  public String getRouteMappingsUrl() {
+    return routeMappingsUrl;
   }
 
   public String getName() {

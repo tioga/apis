@@ -4,7 +4,6 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tiogasolutions.apis.cloudfoundry.pub.*;
-import org.tiogasolutions.lib.jaxrs.client.BearerAuthorization;
 
 import java.util.List;
 import java.util.SortedSet;
