@@ -88,7 +88,7 @@ public class EasyPostClientTest {
 
     List<Rate> rates = shipment.getRates();
     Assert.assertNotNull(rates);
-    Assert.assertEquals(rates.size(), 8, "Found " + rates);
+    Assert.assertTrue(rates.size() >= 4, "Expected at least 4 " + rates);
   }
 
   @Test
@@ -139,7 +139,7 @@ public class EasyPostClientTest {
 
     List<Rate> rates = shipment.getRates();
     Assert.assertNotNull(rates);
-    Assert.assertEquals(rates.size(), 8, "Found " + rates);
+    Assert.assertTrue(rates.size() >= 4, "Expected at least 4 " + rates);
   }
 
   @Test
@@ -152,7 +152,7 @@ public class EasyPostClientTest {
     Shipment shipment = client.createShipment(parcel, toAddress, frAddress);
     List<Rate> rates = shipment.getRates();
     Assert.assertNotNull(rates);
-    Assert.assertEquals(rates.size(), 8, "Found: " + rates);
+    Assert.assertTrue(rates.size() >= 4, "Expected at least 4 " + rates);
 
     Rate rate = shipment.getRates().get(0);
     BuyRateRequest buyRateRequest = new BuyRateRequest(rate);
