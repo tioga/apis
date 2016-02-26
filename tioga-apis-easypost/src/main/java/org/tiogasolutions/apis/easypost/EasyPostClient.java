@@ -80,12 +80,12 @@ public class EasyPostClient {
   }
 
   
-  public Shipment createShipment(CreateParcelRequest newParcel, CreateAddressRequest toAddress, CreateAddressRequest fromAddress) {
-    CreateShipmentRequest newShipment = new CreateShipmentRequest(newParcel, toAddress, fromAddress);
+  public Shipment createShipment(CreateParcelRequest newParcel, CreateAddressRequest toAddress, CreateAddressRequest fromAddress, LabelFormat labelFormat) {
+    CreateShipmentRequest newShipment = new CreateShipmentRequest(newParcel, toAddress, fromAddress, labelFormat);
     return createShipment(newShipment);
   }
-  public Shipment createShipmentFrom(Parcel parcel, Address toAddress, Address fromAddress) {
-    CreateShipmentRequest newShipment = new CreateShipmentRequest(parcel, toAddress, fromAddress);
+  public Shipment createShipmentFrom(Parcel parcel, Address toAddress, Address fromAddress, LabelFormat labelFormat) {
+    CreateShipmentRequest newShipment = new CreateShipmentRequest(parcel, toAddress, fromAddress, labelFormat);
     return createShipment(newShipment);
   }
   public Shipment createShipment(CreateShipmentRequest newShipment) {

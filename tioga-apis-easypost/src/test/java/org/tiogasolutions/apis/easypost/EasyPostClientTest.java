@@ -82,7 +82,7 @@ public class EasyPostClientTest {
     CreateAddressRequest toAddress = RequestFactory.createBusinessAddress();
     CreateAddressRequest frAddress = RequestFactory.createResidentialAddress();
 
-    Shipment shipment = client.createShipment(parcel, toAddress, frAddress);
+    Shipment shipment = client.createShipment(parcel, toAddress, frAddress, LabelFormat.PDF);
     Assert.assertNotNull(shipment);
 
     Assert.assertNotNull(shipment.getParcel());
@@ -101,7 +101,7 @@ public class EasyPostClientTest {
     CreateAddressRequest toAddress = RequestFactory.createBusinessAddress();
     CreateAddressRequest frAddress = RequestFactory.createResidentialAddress();
 
-    Shipment shipment = client.createShipment(parcel, toAddress, frAddress);
+    Shipment shipment = client.createShipment(parcel, toAddress, frAddress, LabelFormat.PDF);
     Assert.assertNotNull(shipment);
 
     Assert.assertNotNull(shipment.getRates());
@@ -115,7 +115,7 @@ public class EasyPostClientTest {
     Address toAddress = client.createAddress(RequestFactory.createBusinessAddress());
     Address frAddress = client.createAddress(RequestFactory.createResidentialAddress());
 
-    Shipment shipment = client.createShipmentFrom(parcel, toAddress, frAddress);
+    Shipment shipment = client.createShipmentFrom(parcel, toAddress, frAddress, LabelFormat.PDF);
     Assert.assertNotNull(shipment);
 
     Assert.assertNotNull(shipment.getParcel());
@@ -133,7 +133,7 @@ public class EasyPostClientTest {
     Address toAddress = client.createAddress(RequestFactory.createBusinessAddress());
     Address frAddress = client.createAddress(RequestFactory.createResidentialAddress());
 
-    Shipment shipment = client.createShipmentFrom(parcel, toAddress, frAddress);
+    Shipment shipment = client.createShipmentFrom(parcel, toAddress, frAddress, LabelFormat.PDF);
     Assert.assertNotNull(shipment);
 
     Assert.assertNotNull(shipment.getParcel());
@@ -152,7 +152,7 @@ public class EasyPostClientTest {
     CreateAddressRequest toAddress = RequestFactory.createBusinessAddress();
     CreateAddressRequest frAddress = RequestFactory.createResidentialAddress();
 
-    Shipment shipment = client.createShipment(parcel, toAddress, frAddress);
+    Shipment shipment = client.createShipment(parcel, toAddress, frAddress, LabelFormat.PDF);
     List<Rate> rates = shipment.getRates();
     Assert.assertNotNull(rates);
     Assert.assertTrue(rates.size() >= 4, "Expected at least 4 " + rates);
@@ -165,5 +165,6 @@ public class EasyPostClientTest {
 
     PostageLabel postageLabel = response.getPostageLabel();
     Assert.assertNotNull(postageLabel);
+    Assert.assertTrue(postageLabel.getLabelUrl().endsWith(".pdf"), "Found " + postageLabel.getLabelUrl());
   }
 }

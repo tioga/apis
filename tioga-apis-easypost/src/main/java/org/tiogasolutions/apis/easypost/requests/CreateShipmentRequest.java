@@ -1,6 +1,7 @@
 package org.tiogasolutions.apis.easypost.requests;
 
 import org.tiogasolutions.apis.easypost.pub.Address;
+import org.tiogasolutions.apis.easypost.pub.LabelFormat;
 import org.tiogasolutions.apis.easypost.pub.Parcel;
 
 import javax.ws.rs.core.Form;
@@ -15,7 +16,9 @@ public class CreateShipmentRequest {
   private final CreateAddressRequest fromAddress;
   private final CreateParcelRequest parcel;
 
-  public CreateShipmentRequest(Parcel parcel, Address fromAddress, Address toAddress) {
+  private final LabelFormat labelFormat;
+
+  public CreateShipmentRequest(Parcel parcel, Address fromAddress, Address toAddress, LabelFormat labelFormat) {
     this.parcelId = parcel.getId();
     this.toAddresssId = toAddress.getId();
     this.fromAddressId = fromAddress.getId();
@@ -23,9 +26,11 @@ public class CreateShipmentRequest {
     this.parcel = null;
     this.fromAddress = null;
     this.toAddress = null;
+
+    this.labelFormat = labelFormat;
   }
 
-  public CreateShipmentRequest(CreateParcelRequest parcel, CreateAddressRequest fromAddress, CreateAddressRequest toAddresss) {
+  public CreateShipmentRequest(CreateParcelRequest parcel, CreateAddressRequest fromAddress, CreateAddressRequest toAddresss, LabelFormat labelFormat) {
     this.parcel = parcel;
     this.fromAddress = fromAddress;
     this.toAddress = toAddresss;
@@ -33,6 +38,8 @@ public class CreateShipmentRequest {
     this.toAddresssId = null;
     this.fromAddressId = null;
     this.parcelId = null;
+
+    this.labelFormat = labelFormat;
   }
 
   public CreateAddressRequest getToAddress() {
@@ -47,8 +54,25 @@ public class CreateShipmentRequest {
     return parcel;
   }
 
+  public String getToAddresssId() {
+    return toAddresssId;
+  }
+
+  public String getFromAddressId() {
+    return fromAddressId;
+  }
+
+  public String getParcelId() {
+    return parcelId;
+  }
+
+  public LabelFormat getLabelFormat() {
+    return labelFormat;
+  }
+
   public Form toForm() {
     Form form = new Form();
+    form.param("shipment[options][label_format]", labelFormat.name());
 
     if (parcelId != null) {
       form.param("shipment[to_address][id]", toAddresssId);
