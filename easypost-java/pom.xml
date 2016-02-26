@@ -7,6 +7,7 @@
     <version>2.1.6</version>
     <name>easypost-java</name>
     <url>https://github.com/easypost/easypost-java</url>
+
     <dependencies>
         <dependency>
             <groupId>com.google.code.gson</groupId>
@@ -20,6 +21,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+
     <description>EasyPost Java Client Library</description>
     <organization>
         <name>EasyPost</name>

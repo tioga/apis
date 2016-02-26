@@ -3,6 +3,7 @@ package org.tiogasolutions.apis.cloudfoundry.pub;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.ZonedDateTime;
+import java.util.Map;
 
 public class Event implements Comparable<Event> {
 
@@ -44,6 +45,15 @@ public class Event implements Comparable<Event> {
     this.metadata = metadata;
     this.spaceGuid = spaceGuid;
     this.organizationGuid = organizationGuid;
+  }
+
+  public String getAction() {
+    try {
+      return getMetadata().getRequest().getState();
+
+    } catch (NullPointerException e) {
+      return null;
+    }
   }
 
   public String getType() {
@@ -103,5 +113,10 @@ public class Event implements Comparable<Event> {
 
     diff = this.actor.compareTo(that.actor);
     return diff;
+  }
+
+  @Override
+  public String toString() {
+    return String.format("%s %s %s", acteeName, type, timestamp);
   }
 }

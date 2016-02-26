@@ -154,4 +154,9 @@ public class Rate {
   public String getCarrierAccountId() {
     return carrierAccountId;
   }
+
+  @Override
+  public String toString() {
+    return String.format("%s-%s", carrier, service);
+  }
 }

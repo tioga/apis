@@ -4,31 +4,41 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tiogasolutions.apis.cloudfoundry.pub.*;
+import org.tiogasolutions.lib.jaxrs.client.BearerAuthorization;
 
 import java.util.List;
 import java.util.SortedSet;
 
 @Test
-public class PwsClientTest {
+public class CfClientTest {
 
-  private PwsClient pwsClient;
+  private CfClient cfClient;
 
   @BeforeClass
   public void beforeClass() {
-    pwsClient = new PwsClient();
-    pwsClient.setIgnoringCertificates(true);
+    cfClient = new CfClient();
+    cfClient.setIgnoringCertificates(true);
 
-    LoginResponse response = pwsClient.login("me@jacobparr.com", "go2Pivotal");
+    LoginResponse response = cfClient.login("me@jacobparr.com", "go2Pivotal");
     Assert.assertNotNull(response);
   }
 
+  public void testRefresh() throws Exception {
+    String oldAccessToken = cfClient.getApiAuthorization().getAccessToken();
+
+    cfClient.refresh();
+
+    String newAccessToken = cfClient.getApiAuthorization().getAccessToken();
+    Assert.assertNotEquals(oldAccessToken, newAccessToken);
+  }
+
   public void testGetEvents() throws Exception {
-    GetEventsResponse response = pwsClient.getApplicationEvents(0);
+    GetEventsResponse response = cfClient.getApplicationEvents(0);
     Assert.assertNotNull(response);
 
-    SortedSet<Event> events = response.getAppEvents("tioga-notify-engine");
+    SortedSet<Event> events = response.getAppEvents("jacob-parr");
     for (Event event : events) {
-      String date = event.getTimestamp().toLocalDateTime().toString().replace("T", "");
+      String date = event.getTimestamp().toLocalDateTime().toString().replace("T", " ");
       System.out.printf("%-20s %s\n", date, event.getType());
       if (event.getMetadata().getExitDescription() != null) {
         String desc = event.getMetadata().getExitDescription();
@@ -38,9 +48,8 @@ public class PwsClientTest {
     }
   }
 
-
   public void testGetApplications() throws Exception {
-    GetAppsResponse response = pwsClient.getApplications();
+    GetAppsResponse response = cfClient.getApplications();
     Assert.assertNotNull(response);
 
     List<AppResource> resources = response.getAppResources();

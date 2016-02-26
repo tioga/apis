@@ -1,81 +1,53 @@
 package org.tiogasolutions.apis.cloudfoundry.pub;
 
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.ZonedDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Metadata implements Comparable<Metadata> {
 
   private final String guid;
-  private final String url;
-  private final ZonedDateTime createdAt;
-  private final ZonedDateTime updatedAt;
-
-  private final String instance;
-  private final int index;
   private final String exitDescription;
-  private final String reason;
+  private final ZonedDateTime createdAt;
   private final Request request;
-  private final String routeGuid;
+
+  private final Map<String,Object> properties = new HashMap<>();
 
   public Metadata(@JsonProperty("guid") String guid,
-                  @JsonProperty("url") String url,
-                  @JsonProperty("created_at") ZonedDateTime createdAt,
-                  @JsonProperty("updated_at") ZonedDateTime updatedAt,
-                  @JsonProperty("instance") String instance,
-                  @JsonProperty("index") int index,
                   @JsonProperty("exit_description") String exitDescription,
-                  @JsonProperty("reason") String reason,
-                  @JsonProperty("request") Request request,
-                  @JsonProperty("route_guid") String routeGuid) {
+                  @JsonProperty("created_at") ZonedDateTime createdAt,
+                  @JsonProperty("request") Request request) {
 
     this.guid = guid;
-    this.url = url;
-    this.createdAt = createdAt;
-    this.updatedAt = updatedAt;
-
-    this.instance = instance;
-    this.index = index;
-    this.exitDescription = exitDescription;
-    this.reason = reason;
     this.request = request;
-    this.routeGuid = routeGuid;
+    this.createdAt = createdAt;
+    this.exitDescription = exitDescription;
   }
 
-  public String getRouteGuid() {
-    return routeGuid;
+  @JsonAnyGetter
+  public Object getProperty(String propertyName) {
+    return properties.get(propertyName);
+  }
+
+  @JsonAnySetter
+  public void setProperty(String propertyName, Object value) {
+    properties.put(propertyName, value);
   }
 
   public String getGuid() {
     return guid;
   }
 
-  public String getUrl() {
-    return url;
-  }
-
-  public ZonedDateTime getCreatedAt() {
-    return createdAt;
-  }
-
-  public ZonedDateTime getUpdatedAt() {
-    return updatedAt;
-  }
-
-  public String getInstance() {
-    return instance;
-  }
-
-  public int getIndex() {
-    return index;
-  }
-
   public String getExitDescription() {
     return exitDescription;
   }
 
-  public String getReason() {
-    return reason;
+  public ZonedDateTime getCreatedAt() {
+    return createdAt;
   }
 
   public Request getRequest() {

@@ -2,6 +2,8 @@ package org.tiogasolutions.apis.cloudfoundry.pub;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.Map;
+
 public class EventResource implements Comparable<EventResource> {
 
   private final Event event;
@@ -25,5 +27,9 @@ public class EventResource implements Comparable<EventResource> {
   @Override
   public int compareTo(EventResource that) {
     return this.getEvent().compareTo(that.getEvent());
+  }
+
+  public String toString() {
+    return event.toString();
   }
 }

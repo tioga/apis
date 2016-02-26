@@ -12,9 +12,7 @@ import org.tiogasolutions.lib.jaxrs.client.SimpleRestClient;
 import javax.ws.rs.core.Form;
 import java.util.SortedSet;
 
-public class PwsClient {
-
-  private static final String clientId = "lkj32dlj2398edk23o4sk";
+public class CfClient {
 
   private TiogaJacksonTranslator translator = new TiogaJacksonTranslator();
 
@@ -23,7 +21,15 @@ public class PwsClient {
 
   private String refreshToken;
 
-  public PwsClient() {
+  public CfClient() {
+  }
+
+  public BasicAuthorization getLoginAuthorization() {
+    return (BasicAuthorization)loginClient.getAuthorization();
+  }
+
+  public BearerAuthorization getApiAuthorization() {
+    return (BearerAuthorization)apiClient.getAuthorization();
   }
 
   public void setIgnoringCertificates(boolean ignoringCertificates) {
@@ -46,6 +52,20 @@ public class PwsClient {
     return response;
   }
 
+  public LoginResponse refresh() {
+    Form form = new Form();
+    form.param("grant_type", "refresh_token");
+    form.param("refresh_token", refreshToken);
+
+    LoginResponse response = loginClient.post(LoginResponse.class, "/oauth/token", form);
+
+    this.refreshToken = response.getRefreshToken();
+    String accessToken = response.getAccessToken();
+    apiClient.setAuthorization(new BearerAuthorization(accessToken));
+
+    return response;
+  }
+
   public SortedSet<Event> getApplicatinEvents(String appName, int max) {
     GetEventsResponse response = getApplicationEvents(max);
     return response.getAppEvents(appName);
@@ -55,11 +75,11 @@ public class PwsClient {
     if (max < 1) max = 100;
     max = Math.min(100, max);
     String resultsPerPage = "results-per-page="+max;
-    return apiClient.get(GetEventsResponse.class, "/v2/events", resultsPerPage);
+    String orderDirection = "order-direction=desc";
+    return apiClient.get(GetEventsResponse.class, "/v2/events", resultsPerPage, orderDirection);
   }
 
   public GetAppsResponse getApplications() {
-    String content = apiClient.get(String.class, "/v2/apps");
-    return apiClient.translateResponse(GetAppsResponse.class, content);
+    return apiClient.get(GetAppsResponse.class, "/v2/apps");
   }
 }

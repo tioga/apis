@@ -2,7 +2,9 @@ package org.tiogasolutions.apis.cloudfoundry.pub;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AppResource implements Comparable<AppResource> {
+import java.util.Map;
+
+public class AppResource {
 
   private final App app;
   private final Metadata metadata;
@@ -20,10 +22,5 @@ public class AppResource implements Comparable<AppResource> {
 
   public App getApp() {
     return app;
-  }
-
-  @Override
-  public int compareTo(AppResource that) {
-    return this.getMetadata().compareTo(that.getMetadata());
   }
 }

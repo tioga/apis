@@ -10,6 +10,8 @@ import org.tiogasolutions.apis.easypost.requests.BuyRateResponse;
 import org.tiogasolutions.apis.easypost.requests.CreateAddressRequest;
 import org.tiogasolutions.apis.easypost.requests.CreateParcelRequest;
 
+import java.util.List;
+
 public class EasyPostClientTest {
 
   private EasyPostClient client;
@@ -84,8 +86,9 @@ public class EasyPostClientTest {
     Assert.assertNotNull(shipment.getToAddress());
     Assert.assertNotNull(shipment.getFromAddress());
 
-    Assert.assertNotNull(shipment.getRates());
-    Assert.assertEquals(shipment.getRates().size(), 8);
+    List<Rate> rates = shipment.getRates();
+    Assert.assertNotNull(rates);
+    Assert.assertEquals(rates.size(), 8, "Found " + rates);
   }
 
   @Test
@@ -134,8 +137,9 @@ public class EasyPostClientTest {
     Assert.assertNotNull(shipment.getToAddress());
     Assert.assertNotNull(shipment.getFromAddress());
 
-    Assert.assertNotNull(shipment.getRates());
-    Assert.assertEquals(shipment.getRates().size(), 8);
+    List<Rate> rates = shipment.getRates();
+    Assert.assertNotNull(rates);
+    Assert.assertEquals(rates.size(), 8, "Found " + rates);
   }
 
   @Test
@@ -146,8 +150,9 @@ public class EasyPostClientTest {
     CreateAddressRequest frAddress = RequestFactory.createResidentialAddress();
 
     Shipment shipment = client.createShipment(parcel, toAddress, frAddress);
-    Assert.assertNotNull(shipment.getRates());
-    Assert.assertEquals(shipment.getRates().size(), 8);
+    List<Rate> rates = shipment.getRates();
+    Assert.assertNotNull(rates);
+    Assert.assertEquals(rates.size(), 4, "Found: " + rates);
 
     Rate rate = shipment.getRates().get(0);
     BuyRateRequest buyRateRequest = new BuyRateRequest(rate);
