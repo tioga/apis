@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 project(':tioga-apis-easypost') {
-  version = "1.0.2"
+  version = "1.0.3"
 
   dependencies {
     compile("org.tiogasolutions.lib:tioga-lib-jaxrs:+")
