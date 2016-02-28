@@ -1,7 +1,9 @@
 package org.tiogasolutions.apis.easypost.pub;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+@JsonIgnoreProperties({"object"})
 public class TrackingLocation {
     private final String city;
     private final String state;

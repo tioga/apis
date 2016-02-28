@@ -99,4 +99,52 @@ public class EasyPostClient {
     String url = String.format("/shipments/%s/buy", buyRateRequest.getShipmentId());
     return client.post(BuyRateResponse.class, url, form);
   }
+
+  public Shipment getShipment(Shipment shipment) {
+    return getShipment(shipment.getId());
+  }
+
+  public Shipment getShipment(String id) {
+    String url = String.format("/shipments/%s", id);
+    return client.get(Shipment.class, url);
+  }
+
+  public Parcel getParcel(Parcel parcel) {
+    return getParcel(parcel.getId());
+  }
+
+  public Parcel getParcel(String id) {
+    String url = String.format("/parcels/%s", id);
+    return client.get(Parcel.class, url);
+  }
+
+  public Address getAddress(Address address) {
+    return getAddress(address.getId());
+  }
+
+  public Address getAddress(String id) {
+    String url = String.format("/addresses/%s", id);
+    return client.get(Address.class, url);
+  }
+
+//  public PostageLabel getPostageLabel(Shipment shipment, PostageLabel postageLabel) {
+//    return getPostageLabel(shipment.getId(), postageLabel.getId());
+//  }
+//
+//  public PostageLabel getPostageLabel(String shipmentId, String labelId) {
+//    String url = String.format("/shipments/%s/label", shipmentId, labelId);
+//    return client.get(PostageLabel.class, url, "file_format=PDF");
+//  }
 }
+
+
+
+
+
+
+
+
+
+
+
+

@@ -7,6 +7,7 @@ import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 
+@SuppressWarnings("unused")
 @JsonIgnoreProperties({"object", "batch_id", "fees"})
 public class Shipment {
 
@@ -40,7 +41,7 @@ public class Shipment {
 	private final Map<String, String> options;
 	private final List<ShipmentMessage> messages;
   private final String batchId;
-  private final List<String> fees;
+  private final List<Fee> fees;
 
 	public Shipment(@JsonProperty("id") String id,
 									@JsonProperty("mode") SystemMode mode,
@@ -71,7 +72,7 @@ public class Shipment {
 									@JsonProperty("options") Map<String, String> options,
 									@JsonProperty("messages") List<ShipmentMessage> messages,
                   @JsonProperty("batch_id") String batchId,
-                  @JsonProperty("fees") List<String> fees) {
+                  @JsonProperty("fees") List<Fee> fees) {
 
 		this.id = id;
 		this.mode = mode;
@@ -221,7 +222,7 @@ public class Shipment {
     return batchId;
   }
 
-  public List<String> getFees() {
+  public List<Fee> getFees() {
     return fees;
   }
 }
