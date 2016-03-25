@@ -83,7 +83,7 @@ public class EasyPostClientTest {
     CreateAddressRequest toAddress = RequestFactory.createBusinessAddress();
     CreateAddressRequest frAddress = RequestFactory.createResidentialAddress();
 
-    Shipment shipment = client.createShipment(parcel, toAddress, frAddress, LabelFormat.PDF);
+    Shipment shipment = client.createShipment(parcel, frAddress, toAddress, LabelFormat.PDF);
     Assert.assertNotNull(shipment);
 
     Assert.assertNotNull(shipment.getParcel());
@@ -101,7 +101,7 @@ public class EasyPostClientTest {
     CreateAddressRequest toAddress = RequestFactory.createBusinessAddress();
     CreateAddressRequest frAddress = RequestFactory.createResidentialAddress();
 
-    Shipment shipment = client.createShipment(parcel, toAddress, frAddress, LabelFormat.PDF);
+    Shipment shipment = client.createShipment(parcel, frAddress, toAddress, LabelFormat.PDF);
     Assert.assertNotNull(shipment);
 
     Assert.assertNotNull(shipment.getRates());
@@ -111,7 +111,7 @@ public class EasyPostClientTest {
   @Test(dependsOnMethods = {"testCreateBusinessAddress", "testCreateResidentialAddress", "testCreateDimensionParcel"})
   public void testCreateShipment() {
 
-    shipment = client.createShipmentFrom(parcel, toAddress, fromAddress, LabelFormat.PDF);
+    shipment = client.createShipmentFrom(parcel, fromAddress, toAddress, LabelFormat.PDF);
     Assert.assertNotNull(shipment);
 
     Assert.assertNotNull(shipment.getParcel());
