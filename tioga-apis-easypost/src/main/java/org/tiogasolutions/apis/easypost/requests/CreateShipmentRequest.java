@@ -30,7 +30,7 @@ public class CreateShipmentRequest {
     this.labelFormat = labelFormat;
   }
 
-  public CreateShipmentRequest(CreateParcelRequest parcel, CreateAddressRequest fromAddress, CreateAddressRequest toAddresss, LabelFormat labelFormat) {
+  public CreateShipmentRequest(CreateParcelRequest parcel, CreateAddressRequest toAddresss, CreateAddressRequest fromAddress, LabelFormat labelFormat) {
     this.parcel = parcel;
     this.fromAddress = fromAddress;
     this.toAddress = toAddresss;
