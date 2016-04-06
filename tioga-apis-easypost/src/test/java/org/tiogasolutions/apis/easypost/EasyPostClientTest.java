@@ -6,8 +6,8 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.tiogasolutions.apis.easypost.carrier.UspsPredefinedPackages;
 import org.tiogasolutions.apis.easypost.pub.*;
-import org.tiogasolutions.apis.easypost.requests.BuyRateRequest;
-import org.tiogasolutions.apis.easypost.requests.BuyRateResponse;
+import org.tiogasolutions.apis.easypost.requests.EpPurchaseShipmentRequest;
+import org.tiogasolutions.apis.easypost.requests.EpPurchaseShippingResponse;
 import org.tiogasolutions.apis.easypost.requests.CreateAddressRequest;
 import org.tiogasolutions.apis.easypost.requests.CreateParcelRequest;
 import org.tiogasolutions.dev.common.EnvUtils;
@@ -128,9 +128,9 @@ public class EasyPostClientTest {
 
     // Arbitrarily take the first one
     Rate rate = shipment.getRates().get(0);
-    BuyRateRequest buyRateRequest = new BuyRateRequest(rate);
+    EpPurchaseShipmentRequest buyRateRequest = new EpPurchaseShipmentRequest(rate);
 
-    BuyRateResponse response = client.buyPostage(buyRateRequest);
+    EpPurchaseShippingResponse response = client.purchaseShipment(buyRateRequest);
     Assert.assertNotNull(response);
 
     postageLabel = response.getPostageLabel();

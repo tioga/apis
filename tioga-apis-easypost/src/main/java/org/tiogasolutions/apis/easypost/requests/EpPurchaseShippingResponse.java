@@ -9,7 +9,7 @@ import org.tiogasolutions.apis.easypost.pub.Tracker;
 import javax.ws.rs.core.Form;
 import java.util.List;
 
-public class BuyRateResponse {
+public class EpPurchaseShippingResponse {
 
   private final PostageLabel postageLabel;
   private final String insurance;
@@ -20,14 +20,14 @@ public class BuyRateResponse {
   private final List<Fee> fees;
   private final Tracker tracker;
 
-  public BuyRateResponse(@JsonProperty("postage_label") PostageLabel postageLabel,
-                         @JsonProperty("insurance") String insurance,
-                         @JsonProperty("tracking_code") String trackingCode,
-                         @JsonProperty("forms") List<String> forms,
-                         @JsonProperty("messages") List<String> messages,
-                         @JsonProperty("selected_rate") Rate selectedRate,
-                         @JsonProperty("fees") List<Fee> fees,
-                         @JsonProperty("tracker") Tracker tracker) {
+  public EpPurchaseShippingResponse(@JsonProperty("postage_label") PostageLabel postageLabel,
+                                    @JsonProperty("insurance") String insurance,
+                                    @JsonProperty("tracking_code") String trackingCode,
+                                    @JsonProperty("forms") List<String> forms,
+                                    @JsonProperty("messages") List<String> messages,
+                                    @JsonProperty("selected_rate") Rate selectedRate,
+                                    @JsonProperty("fees") List<Fee> fees,
+                                    @JsonProperty("tracker") Tracker tracker) {
 
     this.postageLabel = postageLabel;
     this.insurance = insurance;

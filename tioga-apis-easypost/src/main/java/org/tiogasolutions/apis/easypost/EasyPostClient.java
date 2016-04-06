@@ -93,11 +93,11 @@ public class EasyPostClient {
     return client.post(Shipment.class, "/shipments", form);
   }
 
-  public BuyRateResponse buyPostage(BuyRateRequest buyRateRequest) {
-    Form form = buyRateRequest.toForm();
+  public EpPurchaseShippingResponse purchaseShipment(EpPurchaseShipmentRequest purchaseRequest) {
+    Form form = purchaseRequest.toForm();
 
-    String url = String.format("/shipments/%s/buy", buyRateRequest.getShipmentId());
-    return client.post(BuyRateResponse.class, url, form);
+    String url = String.format("/shipments/%s/buy", purchaseRequest.getShipmentId());
+    return client.post(EpPurchaseShippingResponse.class, url, form);
   }
 
   public Shipment getShipment(Shipment shipment) {

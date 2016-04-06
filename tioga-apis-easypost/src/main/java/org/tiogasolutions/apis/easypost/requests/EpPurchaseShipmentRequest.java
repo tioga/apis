@@ -4,17 +4,17 @@ import org.tiogasolutions.apis.easypost.pub.Rate;
 
 import javax.ws.rs.core.Form;
 
-public class BuyRateRequest {
+public class EpPurchaseShipmentRequest {
 
   private final String rateId;
   private final String shipmentId;
 
-  public BuyRateRequest(String rateId, String shipmentId) {
+  public EpPurchaseShipmentRequest(String rateId, String shipmentId) {
     this.rateId = rateId;
     this.shipmentId = shipmentId;
   }
 
-  public BuyRateRequest(Rate rate) {
+  public EpPurchaseShipmentRequest(Rate rate) {
     this.rateId = rate.getId();
     this.shipmentId = rate.getShipmentId();
   }
