@@ -4,12 +4,12 @@ import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
-import org.tiogasolutions.apis.easypost.carrier.UspsPredefinedPackages;
+import org.tiogasolutions.apis.easypost.carrier.EpUspsPredefinedPackages;
 import org.tiogasolutions.apis.easypost.pub.*;
 import org.tiogasolutions.apis.easypost.requests.EpPurchaseShipmentRequest;
 import org.tiogasolutions.apis.easypost.requests.EpPurchaseShippingResponse;
-import org.tiogasolutions.apis.easypost.requests.CreateAddressRequest;
-import org.tiogasolutions.apis.easypost.requests.CreateParcelRequest;
+import org.tiogasolutions.apis.easypost.requests.EpCreateAddressRequest;
+import org.tiogasolutions.apis.easypost.requests.EpCreateParcelRequest;
 import org.tiogasolutions.dev.common.EnvUtils;
 
 import java.util.List;
@@ -19,11 +19,11 @@ public class EasyPostClientTest {
 
   private EasyPostClient client;
 
-  private Parcel parcel;
-  private Address fromAddress;
-  private Address toAddress;
-  private Shipment shipment;
-  private PostageLabel postageLabel;
+  private EpParcel parcel;
+  private EpAddress fromAddress;
+  private EpAddress toAddress;
+  private EpShipment shipment;
+  private EpPostageLabel postageLabel;
 
   @BeforeClass
   public void beforeClass() {
@@ -66,7 +66,7 @@ public class EasyPostClientTest {
   }
 
   public void testCreatePredefinedParcel() {
-    Parcel parcel = client.createParcel(10, UspsPredefinedPackages.flatRateLegalEnvelope);
+    EpParcel parcel = client.createParcel(10, EpUspsPredefinedPackages.flatRateLegalEnvelope);
 
     Assert.assertNotNull(parcel);
     Assert.assertNotNull(parcel.getId());
@@ -79,29 +79,29 @@ public class EasyPostClientTest {
 
   public void testCreateShipmentWithDimensions_OneShot() {
 
-    CreateParcelRequest parcel = new CreateParcelRequest(10, 3, 4, 5);
-    CreateAddressRequest toAddress = RequestFactory.createBusinessAddress();
-    CreateAddressRequest frAddress = RequestFactory.createResidentialAddress();
+    EpCreateParcelRequest parcel = new EpCreateParcelRequest(10, 3, 4, 5);
+    EpCreateAddressRequest toAddress = EpRequestFactory.createBusinessAddress();
+    EpCreateAddressRequest frAddress = EpRequestFactory.createResidentialAddress();
 
-    Shipment shipment = client.createShipment(parcel, frAddress, toAddress, LabelFormat.PDF);
+    EpShipment shipment = client.createShipment(parcel, frAddress, toAddress, EpLabelFormat.PDF);
     Assert.assertNotNull(shipment);
 
     Assert.assertNotNull(shipment.getParcel());
     Assert.assertNotNull(shipment.getToAddress());
     Assert.assertNotNull(shipment.getFromAddress());
 
-    List<Rate> rates = shipment.getRates();
+    List<EpRate> rates = shipment.getRates();
     Assert.assertNotNull(rates);
     Assert.assertTrue(rates.size() >= 4, "Expected at least 4 " + rates);
   }
 
   public void testCreateShipmentWithPredefinedParcel_OneShot() {
 
-    CreateParcelRequest parcel = new CreateParcelRequest(10, UspsPredefinedPackages.flatRateEnvelope);
-    CreateAddressRequest toAddress = RequestFactory.createBusinessAddress();
-    CreateAddressRequest frAddress = RequestFactory.createResidentialAddress();
+    EpCreateParcelRequest parcel = new EpCreateParcelRequest(10, EpUspsPredefinedPackages.flatRateEnvelope);
+    EpCreateAddressRequest toAddress = EpRequestFactory.createBusinessAddress();
+    EpCreateAddressRequest frAddress = EpRequestFactory.createResidentialAddress();
 
-    Shipment shipment = client.createShipment(parcel, frAddress, toAddress, LabelFormat.PDF);
+    EpShipment shipment = client.createShipment(parcel, frAddress, toAddress, EpLabelFormat.PDF);
     Assert.assertNotNull(shipment);
 
     Assert.assertNotNull(shipment.getRates());
@@ -111,14 +111,14 @@ public class EasyPostClientTest {
   @Test(dependsOnMethods = {"testCreateBusinessAddress", "testCreateResidentialAddress", "testCreateDimensionParcel"})
   public void testCreateShipment() {
 
-    shipment = client.createShipmentFrom(parcel, fromAddress, toAddress, LabelFormat.PDF);
+    shipment = client.createShipmentFrom(parcel, fromAddress, toAddress, EpLabelFormat.PDF);
     Assert.assertNotNull(shipment);
 
     Assert.assertNotNull(shipment.getParcel());
     Assert.assertNotNull(shipment.getToAddress());
     Assert.assertNotNull(shipment.getFromAddress());
 
-    List<Rate> rates = shipment.getRates();
+    List<EpRate> rates = shipment.getRates();
     Assert.assertNotNull(rates);
     Assert.assertTrue(rates.size() >= 4, "Expected at least 4 " + rates);
   }
@@ -127,7 +127,7 @@ public class EasyPostClientTest {
   public void testBuyPostage() {
 
     // Arbitrarily take the first one
-    Rate rate = shipment.getRates().get(0);
+    EpRate rate = shipment.getRates().get(0);
     EpPurchaseShipmentRequest buyRateRequest = new EpPurchaseShipmentRequest(rate);
 
     EpPurchaseShippingResponse response = client.purchaseShipment(buyRateRequest);
@@ -140,7 +140,7 @@ public class EasyPostClientTest {
 
   @Test(dependsOnMethods = "testCreateDimensionParcel")
   public void testGetParcel() {
-    Parcel newParcel = client.getParcel(parcel);
+    EpParcel newParcel = client.getParcel(parcel);
     Assert.assertNotNull(newParcel);
     Assert.assertEquals(newParcel.getId(), parcel.getId());
 
@@ -151,7 +151,7 @@ public class EasyPostClientTest {
 
   @Test(dependsOnMethods = {"testCreateBusinessAddress", "testCreateResidentialAddress"})
   public void testGetAddress() {
-    Address newAddress = client.getAddress(fromAddress);
+    EpAddress newAddress = client.getAddress(fromAddress);
     Assert.assertNotNull(newAddress);
     Assert.assertEquals(newAddress.getId(), fromAddress.getId());
     Assert.assertNotEquals(newAddress.getId(), toAddress.getId());
@@ -175,7 +175,7 @@ public class EasyPostClientTest {
   @Test(dependsOnMethods = "testCreateShipment")
   public void testGetShipment() {
 
-    Shipment newShipment = client.getShipment(shipment);
+    EpShipment newShipment = client.getShipment(shipment);
     Assert.assertNotNull(newShipment);
     Assert.assertEquals(newShipment.getId(), shipment.getId());
 

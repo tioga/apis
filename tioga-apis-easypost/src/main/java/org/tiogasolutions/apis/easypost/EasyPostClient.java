@@ -1,6 +1,6 @@
 package org.tiogasolutions.apis.easypost;
 
-import org.tiogasolutions.apis.easypost.carrier.PredefinedPackage;
+import org.tiogasolutions.apis.easypost.carrier.EpPredefinedPackage;
 import org.tiogasolutions.apis.easypost.pub.*;
 import org.tiogasolutions.apis.easypost.requests.*;
 import org.tiogasolutions.dev.common.json.JsonTranslator;
@@ -20,7 +20,7 @@ public class EasyPostClient {
   }
 
   
-  public Address createBusinessAddress(
+  public EpAddress createBusinessAddress(
       String name, String company,
       String street1, String street2,
       String city, String state, String zip,
@@ -32,7 +32,7 @@ public class EasyPostClient {
         phone, email,
         false);
   }
-  public Address createResidentialAddress(
+  public EpAddress createResidentialAddress(
       String name,
       String street1, String street2,
       String city, String state, String zip,
@@ -44,14 +44,14 @@ public class EasyPostClient {
         phone, email,
         true);
   }
-  public Address createAddress(
+  public EpAddress createAddress(
       String name, String company,
       String street1, String street2,
       String city, String state, String zip, String country,
       String phone, String email,
       boolean residential) {
     
-    CreateAddressRequest createAddressRequest = new CreateAddressRequest(
+    EpCreateAddressRequest createAddressRequest = new EpCreateAddressRequest(
         name, company,
         street1, street2,
         city, state, zip, country,
@@ -60,37 +60,37 @@ public class EasyPostClient {
     
     return createAddress(createAddressRequest);
   }
-  public Address createAddress(CreateAddressRequest createAddressRequest) {
+  public EpAddress createAddress(EpCreateAddressRequest createAddressRequest) {
     Form form = createAddressRequest.toForm();
-    return client.post(Address.class, "/addresses", form);
+    return client.post(EpAddress.class, "/addresses", form);
   }
 
   
-  public Parcel createParcel(double weight, PredefinedPackage predefinedPackage) {
-    CreateParcelRequest createParcelRequest = new CreateParcelRequest(weight, predefinedPackage);
+  public EpParcel createParcel(double weight, EpPredefinedPackage predefinedPackage) {
+    EpCreateParcelRequest createParcelRequest = new EpCreateParcelRequest(weight, predefinedPackage);
     return createParcel(createParcelRequest);
   }
-  public Parcel createParcel(double weight, double length, double width, double height) {
-    CreateParcelRequest createParcelRequest = new CreateParcelRequest(weight, length, width, height);
+  public EpParcel createParcel(double weight, double length, double width, double height) {
+    EpCreateParcelRequest createParcelRequest = new EpCreateParcelRequest(weight, length, width, height);
     return createParcel(createParcelRequest);
   }
-  public Parcel createParcel(CreateParcelRequest createParcelRequest) {
+  public EpParcel createParcel(EpCreateParcelRequest createParcelRequest) {
     Form form = createParcelRequest.toForm();
-    return client.post(Parcel.class, "/parcels", form);
+    return client.post(EpParcel.class, "/parcels", form);
   }
 
   
-  public Shipment createShipment(CreateParcelRequest newParcel, CreateAddressRequest fromAddress, CreateAddressRequest toAddress, LabelFormat labelFormat) {
-    CreateShipmentRequest newShipment = new CreateShipmentRequest(newParcel, fromAddress, toAddress, labelFormat);
+  public EpShipment createShipment(EpCreateParcelRequest newParcel, EpCreateAddressRequest fromAddress, EpCreateAddressRequest toAddress, EpLabelFormat labelFormat) {
+    EpCreateShipmentRequest newShipment = new EpCreateShipmentRequest(newParcel, fromAddress, toAddress, labelFormat);
     return createShipment(newShipment);
   }
-  public Shipment createShipmentFrom(Parcel parcel, Address fromAddress, Address toAddress, LabelFormat labelFormat) {
-    CreateShipmentRequest newShipment = new CreateShipmentRequest(parcel, fromAddress, toAddress, labelFormat);
+  public EpShipment createShipmentFrom(EpParcel parcel, EpAddress fromAddress, EpAddress toAddress, EpLabelFormat labelFormat) {
+    EpCreateShipmentRequest newShipment = new EpCreateShipmentRequest(parcel, fromAddress, toAddress, labelFormat);
     return createShipment(newShipment);
   }
-  public Shipment createShipment(CreateShipmentRequest newShipment) {
+  public EpShipment createShipment(EpCreateShipmentRequest newShipment) {
     Form form = newShipment.toForm();
-    return client.post(Shipment.class, "/shipments", form);
+    return client.post(EpShipment.class, "/shipments", form);
   }
 
   public EpPurchaseShippingResponse purchaseShipment(EpPurchaseShipmentRequest purchaseRequest) {
@@ -100,31 +100,31 @@ public class EasyPostClient {
     return client.post(EpPurchaseShippingResponse.class, url, form);
   }
 
-  public Shipment getShipment(Shipment shipment) {
+  public EpShipment getShipment(EpShipment shipment) {
     return getShipment(shipment.getId());
   }
 
-  public Shipment getShipment(String id) {
+  public EpShipment getShipment(String id) {
     String url = String.format("/shipments/%s", id);
-    return client.get(Shipment.class, url);
+    return client.get(EpShipment.class, url);
   }
 
-  public Parcel getParcel(Parcel parcel) {
+  public EpParcel getParcel(EpParcel parcel) {
     return getParcel(parcel.getId());
   }
 
-  public Parcel getParcel(String id) {
+  public EpParcel getParcel(String id) {
     String url = String.format("/parcels/%s", id);
-    return client.get(Parcel.class, url);
+    return client.get(EpParcel.class, url);
   }
 
-  public Address getAddress(Address address) {
+  public EpAddress getAddress(EpAddress address) {
     return getAddress(address.getId());
   }
 
-  public Address getAddress(String id) {
+  public EpAddress getAddress(String id) {
     String url = String.format("/addresses/%s", id);
-    return client.get(Address.class, url);
+    return client.get(EpAddress.class, url);
   }
 
 //  public PostageLabel getPostageLabel(Shipment shipment, PostageLabel postageLabel) {

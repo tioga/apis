@@ -1,33 +1,32 @@
 package org.tiogasolutions.apis.easypost.requests;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import org.tiogasolutions.apis.easypost.pub.Fee;
-import org.tiogasolutions.apis.easypost.pub.PostageLabel;
-import org.tiogasolutions.apis.easypost.pub.Rate;
-import org.tiogasolutions.apis.easypost.pub.Tracker;
+import org.tiogasolutions.apis.easypost.pub.EpFee;
+import org.tiogasolutions.apis.easypost.pub.EpPostageLabel;
+import org.tiogasolutions.apis.easypost.pub.EpRate;
+import org.tiogasolutions.apis.easypost.pub.EpTracker;
 
-import javax.ws.rs.core.Form;
 import java.util.List;
 
 public class EpPurchaseShippingResponse {
 
-  private final PostageLabel postageLabel;
+  private final EpPostageLabel postageLabel;
   private final String insurance;
   private final String trackingCode;
   private final List<String> forms;
   private final List<String> messages;
-  private final Rate selectedRate;
-  private final List<Fee> fees;
-  private final Tracker tracker;
+  private final EpRate selectedRate;
+  private final List<EpFee> fees;
+  private final EpTracker tracker;
 
-  public EpPurchaseShippingResponse(@JsonProperty("postage_label") PostageLabel postageLabel,
+  public EpPurchaseShippingResponse(@JsonProperty("postage_label") EpPostageLabel postageLabel,
                                     @JsonProperty("insurance") String insurance,
                                     @JsonProperty("tracking_code") String trackingCode,
                                     @JsonProperty("forms") List<String> forms,
                                     @JsonProperty("messages") List<String> messages,
-                                    @JsonProperty("selected_rate") Rate selectedRate,
-                                    @JsonProperty("fees") List<Fee> fees,
-                                    @JsonProperty("tracker") Tracker tracker) {
+                                    @JsonProperty("selected_rate") EpRate selectedRate,
+                                    @JsonProperty("fees") List<EpFee> fees,
+                                    @JsonProperty("tracker") EpTracker tracker) {
 
     this.postageLabel = postageLabel;
     this.insurance = insurance;
@@ -39,7 +38,7 @@ public class EpPurchaseShippingResponse {
     this.tracker = tracker;
   }
 
-  public PostageLabel getPostageLabel() {
+  public EpPostageLabel getPostageLabel() {
     return postageLabel;
   }
 
@@ -59,15 +58,15 @@ public class EpPurchaseShippingResponse {
     return messages;
   }
 
-  public Rate getSelectedRate() {
+  public EpRate getSelectedRate() {
     return selectedRate;
   }
 
-  public List<Fee> getFees() {
+  public List<EpFee> getFees() {
     return fees;
   }
 
-  public Tracker getTracker() {
+  public EpTracker getTracker() {
     return tracker;
   }
 }
