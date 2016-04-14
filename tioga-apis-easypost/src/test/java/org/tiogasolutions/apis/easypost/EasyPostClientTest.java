@@ -36,7 +36,7 @@ public class EasyPostClientTest {
         "Jacob Parr", "Sierra Telephone",
         "40033 Sierra Way", null,
         "Oakhurst", "CA", "93644",
-        "111-222-3333", "jacobp.work@example.com");
+        "559-555-1212", "jacobp.work@example.com");
 
     Assert.assertNotNull(fromAddress);
     Assert.assertNotNull(fromAddress.getId());

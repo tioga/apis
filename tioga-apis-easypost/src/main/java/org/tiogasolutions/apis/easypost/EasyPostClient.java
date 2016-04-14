@@ -1,9 +1,11 @@
 package org.tiogasolutions.apis.easypost;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import org.tiogasolutions.apis.easypost.carrier.EpPredefinedPackage;
 import org.tiogasolutions.apis.easypost.pub.*;
 import org.tiogasolutions.apis.easypost.requests.*;
 import org.tiogasolutions.dev.common.json.JsonTranslator;
+import org.tiogasolutions.dev.jackson.TiogaJacksonObjectMapper;
 import org.tiogasolutions.dev.jackson.TiogaJacksonTranslator;
 import org.tiogasolutions.lib.jaxrs.client.BasicAuthorization;
 import org.tiogasolutions.lib.jaxrs.client.SimpleRestClient;
@@ -14,12 +16,17 @@ public class EasyPostClient {
 
   private final SimpleRestClient client;
 
-  public EasyPostClient(String apiKey) {
-    JsonTranslator translator = new TiogaJacksonTranslator();
+  public EasyPostClient(String apiKey, JsonTranslator translator) {
     this.client = new SimpleRestClient(translator, "https://api.easypost.com/v2", new BasicAuthorization(apiKey, ""));
   }
 
-  
+  public EasyPostClient(String apiKey) {
+    TiogaJacksonObjectMapper objectMapper = new TiogaJacksonObjectMapper();
+    objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+    TiogaJacksonTranslator translator = new TiogaJacksonTranslator(objectMapper);
+    this.client = new SimpleRestClient(translator, "https://api.easypost.com/v2", new BasicAuthorization(apiKey, ""));
+  }
+
   public EpAddress createBusinessAddress(
       String name, String company,
       String street1, String street2,
