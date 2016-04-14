@@ -2,14 +2,28 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/apis.iml" filepath="$PROJECT_DIR$/apis.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tioga-apis-big-huge-thesaurus/tioga-apis-big-huge-thesaurus.iml" filepath="$PROJECT_DIR$/tioga-apis-big-huge-thesaurus/tioga-apis-big-huge-thesaurus.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tioga-apis-bitly/tioga-apis-bitly.iml" filepath="$PROJECT_DIR$/tioga-apis-bitly/tioga-apis-bitly.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tioga-apis-cloudfoundry/tioga-apis-cloudfoundry.iml" filepath="$PROJECT_DIR$/tioga-apis-cloudfoundry/tioga-apis-cloudfoundry.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tioga-apis-easypost/tioga-apis-easypost.iml" filepath="$PROJECT_DIR$/tioga-apis-easypost/tioga-apis-easypost.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tioga-apis-google/tioga-apis-google.iml" filepath="$PROJECT_DIR$/tioga-apis-google/tioga-apis-google.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tioga-apis-opensrs/tioga-apis-opensrs.iml" filepath="$PROJECT_DIR$/tioga-apis-opensrs/tioga-apis-opensrs.iml" />
-      <module fileurl="file://$PROJECT_DIR$/tioga-apis-useragent/tioga-apis-useragent.iml" filepath="$PROJECT_DIR$/tioga-apis-useragent/tioga-apis-useragent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/apis.iml" filepath="$PROJECT_DIR$/.idea/modules/apis.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-big-huge-thesaurus/tioga-apis-big-huge-thesaurus.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-big-huge-thesaurus/tioga-apis-big-huge-thesaurus.iml" group="tioga-apis-big-huge-thesaurus" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-big-huge-thesaurus/tioga-apis-big-huge-thesaurus_main.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-big-huge-thesaurus/tioga-apis-big-huge-thesaurus_main.iml" group="tioga-apis-big-huge-thesaurus" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-big-huge-thesaurus/tioga-apis-big-huge-thesaurus_test.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-big-huge-thesaurus/tioga-apis-big-huge-thesaurus_test.iml" group="tioga-apis-big-huge-thesaurus" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-bitly/tioga-apis-bitly.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-bitly/tioga-apis-bitly.iml" group="tioga-apis-bitly" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-bitly/tioga-apis-bitly_main.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-bitly/tioga-apis-bitly_main.iml" group="tioga-apis-bitly" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-bitly/tioga-apis-bitly_test.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-bitly/tioga-apis-bitly_test.iml" group="tioga-apis-bitly" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-cloudfoundry/tioga-apis-cloudfoundry.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-cloudfoundry/tioga-apis-cloudfoundry.iml" group="tioga-apis-cloudfoundry" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-cloudfoundry/tioga-apis-cloudfoundry_main.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-cloudfoundry/tioga-apis-cloudfoundry_main.iml" group="tioga-apis-cloudfoundry" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-cloudfoundry/tioga-apis-cloudfoundry_test.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-cloudfoundry/tioga-apis-cloudfoundry_test.iml" group="tioga-apis-cloudfoundry" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-easypost/tioga-apis-easypost.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-easypost/tioga-apis-easypost.iml" group="tioga-apis-easypost" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-easypost/tioga-apis-easypost_main.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-easypost/tioga-apis-easypost_main.iml" group="tioga-apis-easypost" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-easypost/tioga-apis-easypost_test.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-easypost/tioga-apis-easypost_test.iml" group="tioga-apis-easypost" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-google/tioga-apis-google.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-google/tioga-apis-google.iml" group="tioga-apis-google" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-google/tioga-apis-google_main.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-google/tioga-apis-google_main.iml" group="tioga-apis-google" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-google/tioga-apis-google_test.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-google/tioga-apis-google_test.iml" group="tioga-apis-google" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-opensrs/tioga-apis-opensrs.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-opensrs/tioga-apis-opensrs.iml" group="tioga-apis-opensrs" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-opensrs/tioga-apis-opensrs_main.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-opensrs/tioga-apis-opensrs_main.iml" group="tioga-apis-opensrs" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-opensrs/tioga-apis-opensrs_test.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-opensrs/tioga-apis-opensrs_test.iml" group="tioga-apis-opensrs" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-useragent/tioga-apis-useragent.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-useragent/tioga-apis-useragent.iml" group="tioga-apis-useragent" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-useragent/tioga-apis-useragent_main.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-useragent/tioga-apis-useragent_main.iml" group="tioga-apis-useragent" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/tioga-apis-useragent/tioga-apis-useragent_test.iml" filepath="$PROJECT_DIR$/.idea/modules/tioga-apis-useragent/tioga-apis-useragent_test.iml" group="tioga-apis-useragent" />
     </modules>
   </component>
 </project>

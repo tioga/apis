@@ -28,6 +28,20 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="easypost-java" target="1.8" />
+      <module name="tioga-apis-big-huge-thesaurus_main" target="1.8" />
+      <module name="tioga-apis-big-huge-thesaurus_test" target="1.8" />
+      <module name="tioga-apis-bitly_main" target="1.8" />
+      <module name="tioga-apis-bitly_test" target="1.8" />
+      <module name="tioga-apis-cloudfoundry_main" target="1.8" />
+      <module name="tioga-apis-cloudfoundry_test" target="1.8" />
+      <module name="tioga-apis-easypost_main" target="1.8" />
+      <module name="tioga-apis-easypost_test" target="1.8" />
+      <module name="tioga-apis-google_main" target="1.8" />
+      <module name="tioga-apis-google_test" target="1.8" />
+      <module name="tioga-apis-opensrs_main" target="1.8" />
+      <module name="tioga-apis-opensrs_test" target="1.8" />
+      <module name="tioga-apis-useragent_main" target="1.8" />
+      <module name="tioga-apis-useragent_test" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
