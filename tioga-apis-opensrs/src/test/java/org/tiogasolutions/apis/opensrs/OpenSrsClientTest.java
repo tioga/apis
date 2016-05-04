@@ -5,11 +5,11 @@ import org.testng.annotations.Test;
 import org.tiogasolutions.apis.opensrs.pub.DnLookupResponse;
 import org.tiogasolutions.apis.opensrs.pub.DnStatus;
 
-@Test
+@Test(enabled = false)
 public class OpenSrsClientTest {
 
     public void testAvailableDomain() throws Exception {
-        OpenSrsClient client = OpenSrsClient.liveHttps(5);
+        OpenSrsClient client = OpenSrsClient.liveHttps(10);
 
         DnLookupResponse response = client.lookup("shamingstick.com", false);
         Assert.assertNotNull(response);
@@ -18,7 +18,7 @@ public class OpenSrsClientTest {
     }
 
     public void testTakenDomain() throws Exception {
-        OpenSrsClient client = OpenSrsClient.liveHttps(5);
+        OpenSrsClient client = OpenSrsClient.liveHttps(10);
 
         DnLookupResponse response = client.lookup("google.com", false);
         Assert.assertNotNull(response);

@@ -105,7 +105,6 @@ public class OpenSrsClient {
         } catch (UnknownHostException ex) {
             log.info("Connection timed out, retrying: {}", ex.getMessage());
             return lookup(domainName, noCache);
-
         } catch (Exception ex) {
             throw new Exception("Sending post got exception ", ex);
         }
