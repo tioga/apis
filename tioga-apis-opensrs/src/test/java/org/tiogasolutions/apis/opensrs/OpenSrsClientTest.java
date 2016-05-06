@@ -8,7 +8,7 @@ import org.tiogasolutions.apis.opensrs.pub.DnLookupResponse;
 import org.tiogasolutions.apis.opensrs.pub.DnStatus;
 import org.tiogasolutions.dev.common.EnvUtils;
 
-@Test
+@Test(enabled = false)
 public class OpenSrsClientTest {
 
     @BeforeClass

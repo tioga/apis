@@ -3,11 +3,15 @@ package org.tiogasolutions.apis.opensrs;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.tiogasolutions.apis.opensrs.pub.DnLookupResponse;
+import org.tiogasolutions.dev.common.IoUtils;
+import org.tiogasolutions.dev.common.exceptions.ApiException;
 import org.tiogasolutions.dev.common.json.JsonTranslator;
 import org.tiogasolutions.dev.jackson.TiogaJacksonTranslator;
 import org.tiogasolutions.lib.jaxrs.client.SimpleRestClient;
 
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,7 +40,20 @@ public class SimpleRestClientDelegate extends OpenSrsDelegate {
         String signature = md5Sum(md5Sum(xml + privateKey) + privateKey);
         headers.put("X-Signature", signature);
 
-        String xmlResponse = restClient.post(String.class, MediaType.TEXT_XML_TYPE, "/", xml, headers, MediaType.APPLICATION_XML);
+        Response response = restClient.post(Response.class, MediaType.TEXT_XML_TYPE, "/", xml, headers, MediaType.APPLICATION_XML);
+
+        if (response.getStatus() == -1) {
+            String ipAddress = "unknown";
+
+            try { ipAddress = IoUtils.toString(URI.create("https://api.ipify.org").toURL().openStream());
+            } catch (Exception ignored) {/* ignored*/}
+
+            String msg = String.format("Our upstream service provider is temporarily unavailable (%s).", ipAddress.trim());
+            throw ApiException.serviceUnavailable(msg);
+        }
+
+        String xmlResponse = response.readEntity(String.class);
+
 /*
         try {
             httpClient.executeMethod(postRequest);
@@ -50,7 +67,6 @@ public class SimpleRestClientDelegate extends OpenSrsDelegate {
             throw new Exception("Sending post got exception ", ex);
         }
 */
-
         return DnLookupResponse.fromXmlResponse(domainName, xmlResponse);
     }
 }
