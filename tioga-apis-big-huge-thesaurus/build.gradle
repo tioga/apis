@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 project(':tioga-apis-big-huge-thesaurus') {
-  version = "2.3.3"
+  version = "2.3.4"
 
   dependencies {
     compile("org.tiogasolutions.lib:tioga-lib-jaxrs:+")

@@ -10,7 +10,6 @@ import org.tiogasolutions.dev.jackson.TiogaJacksonTranslator;
 import org.tiogasolutions.lib.jaxrs.client.SimpleRestClient;
 
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Map;
@@ -40,20 +39,22 @@ public class SimpleRestClientDelegate extends OpenSrsDelegate {
         String signature = md5Sum(md5Sum(xml + privateKey) + privateKey);
         headers.put("X-Signature", signature);
 
-        Response response = restClient.post(Response.class, MediaType.TEXT_XML_TYPE, "/", xml, headers, MediaType.APPLICATION_XML);
+        try {
+            String xmlResponse = restClient.post(String.class, MediaType.TEXT_XML_TYPE, "/", xml, headers, MediaType.APPLICATION_XML);
+            return DnLookupResponse.fromXmlResponse(domainName, xmlResponse);
 
-        if (response.getStatus() == -1) {
-            String ipAddress = "unknown";
+        } catch (ApiException e) {
+            if (e.getStatusCode() == -1) {
+                String ipAddress = "unknown";
 
-            try { ipAddress = IoUtils.toString(URI.create("https://api.ipify.org").toURL().openStream());
-            } catch (Exception ignored) {/* ignored*/}
+                try { ipAddress = IoUtils.toString(URI.create("https://api.ipify.org").toURL().openStream());
+                } catch (Exception ignored) {/* ignored*/}
 
-            String msg = String.format("Our upstream service provider is temporarily unavailable (%s).", ipAddress.trim());
-            throw ApiException.serviceUnavailable(msg);
+                String msg = String.format("Our upstream service provider is temporarily unavailable (%s).", ipAddress.trim());
+                throw ApiException.serviceUnavailable(msg);
+            }
+            throw e;
         }
-
-        String xmlResponse = response.readEntity(String.class);
-
 /*
         try {
             httpClient.executeMethod(postRequest);
@@ -67,6 +68,5 @@ public class SimpleRestClientDelegate extends OpenSrsDelegate {
             throw new Exception("Sending post got exception ", ex);
         }
 */
-        return DnLookupResponse.fromXmlResponse(domainName, xmlResponse);
     }
 }
