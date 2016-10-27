@@ -3,21 +3,12 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
+        <option name="createEmptyContentRootDirectories" value="true" />
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="gradleHome" value="/tools/gradle-2.4" />
+        <option name="gradleJvm" value="#JAVA_HOME" />
         <option name="modules">
-          <set>
-            <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/tioga-apis-big-huge-thesaurus" />
-            <option value="$PROJECT_DIR$/tioga-apis-bitly" />
-            <option value="$PROJECT_DIR$/tioga-apis-cloudfoundry" />
-            <option value="$PROJECT_DIR$/tioga-apis-easypost" />
-            <option value="$PROJECT_DIR$/tioga-apis-google" />
-            <option value="$PROJECT_DIR$/tioga-apis-opensrs" />
-            <option value="$PROJECT_DIR$/tioga-apis-useragent" />
-          </set>
-        </option>
-        <option name="myModules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/tioga-apis-big-huge-thesaurus" />

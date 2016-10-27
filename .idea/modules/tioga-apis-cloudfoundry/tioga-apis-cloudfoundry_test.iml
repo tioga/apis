@@ -10,7 +10,7 @@
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="module" module-name="tioga-apis-cloudfoundry_main" />
-    <orderEntry type="library" name="Gradle: org.tiogasolutions.lib:tioga-lib-jaxrs:5.1.4" level="project" />
+    <orderEntry type="library" name="Gradle: org.tiogasolutions.lib:tioga-lib-jaxrs:5.1.5" level="project" />
     <orderEntry type="library" name="Gradle: org.testng:testng:6.8.21" level="project" />
     <orderEntry type="library" name="Gradle: org.glassfish.jersey.core:jersey-client:2.22.2" level="project" />
     <orderEntry type="library" name="Gradle: org.tiogasolutions.dev:tioga-dev-jackson:4.2.5" level="project" />
