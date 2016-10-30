@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 project(':tioga-apis-bitly') {
-  version = "1.2.4"
+  version = "1.2.5"
 
   dependencies {
     compile("org.tiogasolutions.lib:tioga-lib-jaxrs:+")
