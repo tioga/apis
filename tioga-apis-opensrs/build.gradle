@@ -17,7 +17,6 @@ project(':tioga-apis-opensrs') {
     version = "2.4.5"
 
     dependencies {
-        compile("org.tiogasolutions.dev:tioga-dev-common:+")
         compile("commons-httpclient:commons-httpclient:3.1")
 
         compile("org.tiogasolutions.lib:tioga-lib-jaxrs:+")
